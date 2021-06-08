@@ -1,6 +1,7 @@
-import { useContext, useState, useEffect } from "react";
+import { useState } from "react";
 import { Modal, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import EditForm from "./EditForm";
+import { API_BASE_URL } from "../../apiCaller/constant";
 export default function Account({ account }) {
   const [show, setShow] = useState(false);
 
@@ -20,8 +21,8 @@ export default function Account({ account }) {
       body: raw,
       redirect: "follow",
     };
-
-    fetch("http://localhost:8080/api/deleteAccount", requestOptions)
+    const url = API_BASE_URL + "/api/deleteAccount";
+    fetch(url, requestOptions)
       .then((response) => {
         if (response.ok) {
           alert("delete thanh cong");

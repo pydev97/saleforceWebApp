@@ -1,23 +1,14 @@
 import { useEffect, useState } from "react";
-import { Alert, Button, Modal } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import AddForm from "./AddForm";
 import Account from "./Account";
-function AccountList() {
-  //   const [showAlert, setShowAlert] = useState(false);
+import { API_BASE_URL } from "../../apiCaller/constant";
 
+function AccountList() {
   const [show, setShow] = useState(false);
   const [accounts, setAccounts] = useState([]);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
-
-  //   const [currentPage, setCurrentPage] = useState(1);
-  //   const [employeesPerPage] = useState(2);
-  //   const handleShowAlert = () => {
-  //     setShowAlert(true);
-  //     setTimeout(() => {
-  //       setShowAlert(false);
-  //     }, 2000);
-  //   };
 
   useEffect(() => {
     var myHeaders = new Headers();
@@ -35,8 +26,9 @@ function AccountList() {
       body: raw,
       redirect: "follow",
     };
+    const url = API_BASE_URL + "/api/demo";
 
-    fetch("http://localhost:8080/api/demo", requestOptions)
+    fetch(url, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setAccounts(result);
@@ -44,8 +36,6 @@ function AccountList() {
       })
       .catch((error) => console.log("error", error));
   }, []);
-  //   const indexOfLastEmployee = currentPage * employeesPerPage;
-  //   const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
   return (
     <>
       <div className="container-xl">

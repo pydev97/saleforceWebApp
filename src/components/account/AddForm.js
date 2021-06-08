@@ -1,6 +1,7 @@
 import { Form, Button } from "react-bootstrap";
 
 import { useState } from "react";
+import { API_BASE_URL } from "../../apiCaller/constant";
 
 const AddForm = () => {
   const [newAccount, setNewAccount] = useState({
@@ -36,12 +37,11 @@ const AddForm = () => {
       body: raw,
       redirect: "follow",
     };
-
-    fetch("http://localhost:8080/api/createAccount", requestOptions)
+    const url = API_BASE_URL + "/api/createAccount";
+    fetch(url, requestOptions)
       .then((response) => response.json())
       .then((result) => console.log("aadddd" + JSON.stringify(result)))
       .catch((error) => console.log("error", error));
-    // addEmployee(name, email, phone, address);
   };
 
   return (

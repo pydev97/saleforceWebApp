@@ -1,6 +1,7 @@
 import { Form, Button } from "react-bootstrap";
 
 import { useState } from "react";
+import { API_BASE_URL } from "../../apiCaller/constant";
 
 const EditForm = ({ account }) => {
   const id = account.id;
@@ -31,8 +32,8 @@ const EditForm = ({ account }) => {
       body: raw,
       redirect: "follow",
     };
-
-    fetch("http://localhost:8080/api/editAccount", requestOptions)
+    const url = API_BASE_URL + "/api/editAccount";
+    fetch(url, requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));

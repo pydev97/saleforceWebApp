@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { API_BASE_URL } from "../apiCaller/constant";
 export default class Login extends Component {
   render() {
     return (
@@ -30,7 +31,7 @@ export default class Login extends Component {
               </div>
             </div>
             <div className="form-group ">
-              <a href="http://localhost:8080/oauth2/authorization/salesforce">
+              <a href={API_BASE_URL + "/oauth2/authorization/salesforce"}>
                 Log in with Salesforce
               </a>
             </div>
